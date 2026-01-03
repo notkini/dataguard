@@ -1,3 +1,6 @@
+import json
+
+
 class ValidationReport:
     def __init__(self, results: dict):
         self.results = results
@@ -5,12 +8,12 @@ class ValidationReport:
     def summary(self):
         print("DataGuard Validation Summary")
         print("-" * 30)
-        print(f"Rows: {self.results['rows']}")
-        print(f"Columns: {self.results['columns']}")
-        print(f"Duplicate rows: {self.results['duplicate_rows']}")
-        print("Missing values per column:")
-        for col, count in self.results["missing_values"].items():
-            print(f"  {col}: {count}")
+        for key, value in self.results.items():
+            print(f"{key}: {value}")
 
     def to_dict(self) -> dict:
         return self.results
+
+    def to_json(self, path: str):
+        with open(path, "w") as f:
+            json.dump(self.results, f, indent=2)

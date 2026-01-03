@@ -1,18 +1,19 @@
 import pandas as pd
 
 
-def basic_checks(df: pd.DataFrame) -> dict:
-    """
-    Run basic data quality checks.
-    """
+def basic_checks(df: pd.DataFrame, target: str | None = None) -> dict:
     missing_values = df.isnull().sum().to_dict()
     duplicate_rows = int(df.duplicated().sum())
-    total_rows = int(len(df))
-    total_columns = int(len(df.columns))
 
-    return {
-        "rows": total_rows,
-        "columns": total_columns,
+    report = {
+        "rows": int(len(df)),
+        "columns": int(len(df.columns)),
+        "duplicate_rows": duplicate_rows,
         "missing_values": missing_values,
-        "duplicate_rows": duplicate_rows
     }
+
+    if target and target in df.columns:
+        class_counts = df[target].value_counts().to_dict()
+        report["target_distribution"] = class_counts
+
+    return report
