@@ -1,46 +1,36 @@
 # DataGuard
 
-DataGuard is a lightweight Python package for basic dataset quality checks.
+DataGuard is a lightweight Python package for basic dataset quality validation with both API and CLI support.
 
-## Installation (local)
+## Features
+
+- Missing value detection
+- Duplicate row detection
+- Optional target column analysis
+- JSON report export
+- Command line interface
+
+## Installation
+
+From TestPyPI:
 
 ```bash
+pip install -i https://test.pypi.org/simple/ dataguard-lite
+
+Local development:
+
 pip install -e .
 
-Usage
+Usage (Python API)
 
 from dataguard import validate_csv
 
-report = validate_csv("data.csv")
+report = validate_csv("data.csv", target="label")
 report.summary()
+report.to_json("report.json")
 
-License
- 
-MIT
+Usage (CLI)
 
-
----
-
-## Why this was missing
-
-README files do not auto generate sections.
-
-You already wrote:
-- Title
-- Description
-- Installation
-
-Usage is always written explicitly by the developer.
-
-You did nothing wrong.
-
----
-
-## Quick sanity test to confirm usage works
-
-After adding the section, run this in Python:
-
-```python
-from dataguard import validate_csv
-report = validate_csv("yourfile.csv")
-report.summary()
+dataguard data.csv
+dataguard data.csv --target label
+dataguard data.csv --json report.json
