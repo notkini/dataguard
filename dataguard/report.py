@@ -7,9 +7,21 @@ class ValidationReport:
 
     def summary(self):
         print("DataGuard Validation Summary")
-        print("-" * 30)
+        print("-" * 35)
+
         for key, value in self.results.items():
-            print(f"{key}: {value}")
+            if key == "signal_loss":
+                print("\nSilent Signal Loss Detection:")
+                if not value:
+                    print("  No signal loss detected.")
+                else:
+                    for item in value:
+                        print(f"  Column: {item['column']}")
+                        print(f"    Type: {item['type']}")
+                        print(f"    Severity: {item['severity']}")
+                        print(f"    Message: {item['message']}")
+            else:
+                print(f"{key}: {value}")
 
     def to_dict(self) -> dict:
         return self.results

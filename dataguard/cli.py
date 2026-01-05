@@ -7,10 +7,16 @@ def main():
     parser.add_argument("csv", help="Path to CSV file")
     parser.add_argument("--target", help="Target column name", default=None)
     parser.add_argument("--json", help="Save report as JSON file", default=None)
+    parser.add_argument("--signal", action="store_true", help="Detect silent signal loss")
 
     args = parser.parse_args()
 
-    report = validate_csv(args.csv, target=args.target)
+    report = validate_csv(
+        args.csv,
+        target=args.target,
+        signal=args.signal
+    )
+
     report.summary()
 
     if args.json:
