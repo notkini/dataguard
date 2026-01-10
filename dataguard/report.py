@@ -10,7 +10,12 @@ class ValidationReport:
         print("-" * 35)
 
         for key, value in self.results.items():
-            if key == "signal_loss":
+            if key == "column_roles":
+                print("\nInferred Column Roles:")
+                for col, role in value.items():
+                    print(f"  {col}: {role}")
+
+            elif key == "signal_loss":
                 print("\nSilent Signal Loss Detection:")
                 if not value:
                     print("  No signal loss detected.")
@@ -20,6 +25,7 @@ class ValidationReport:
                         print(f"    Type: {item['type']}")
                         print(f"    Severity: {item['severity']}")
                         print(f"    Message: {item['message']}")
+
             else:
                 print(f"{key}: {value}")
 
