@@ -19,15 +19,15 @@ It focuses on catching **silent data issues** that often pass basic checks.
 
 ## Installation
 
-```bash
+```
 pip install dataguard-lite
-
+```
 For local development:
-
+```
 pip install -e .
-
+```
 Usage (Python API)
-
+```
 from dataguard import validate_csv
 
 report = validate_csv(
@@ -39,25 +39,25 @@ report = validate_csv(
 
 report.summary()
 report.to_json("report.json")
-
+```
 Usage (CLI)
 
 Basic validation:
-
+```
 dataguard data.csv
-
+```
 With target column:
-
+```
 dataguard data.csv --target label
-
+```
 Detect silent signal loss:
-
+```
 dataguard data.csv --signal
-
+```
 Infer column roles:
-
+```
 dataguard data.csv --roles
-
+```
 Why DataGuard?
 
 Most data quality tools focus on schema and missing values.
