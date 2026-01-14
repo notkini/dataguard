@@ -62,3 +62,5 @@ Why DataGuard?
 
 Most data quality tools focus on schema and missing values.
 DataGuard goes further by detecting information collapse and column intent, helping catch failures that silently break downstream analysis and models.
+
+more changes to come
